@@ -5,12 +5,12 @@ declare namespace G6 {
         public getBBox(): any;
         public getGraphicGroup(): any;
         public getKeyShape(): any;
-        public getParent(): any;
-        public getChildren(): any;
+        public getParent(): Item;
+        public getChildren(): Array<Item>;
     }
 
     class Node extends Item {
-        public getEdges(): Array<any>;
+        public getEdges(): Array<GraphEdge>;
     }
 
     class Group extends Node {
