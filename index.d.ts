@@ -1,7 +1,13 @@
 declare namespace G6 {
     const version: string;
+    function track(track: boolean): void;
+
     class Item {
-        public getModel(): any;
+        public id: string;
+        public type: string;
+        public zIndex: number;
+        public model: GraphDataCommonType;   
+        public getModel(): GraphDataCommonType;
         public getBBox(): any;
         public getGraphicGroup(): any;
         public getKeyShape(): any;
@@ -35,7 +41,7 @@ declare namespace G6 {
             eventName: 'click' | 'dblclick' | 'mouseenter' | 'mouseleave' | 'mousedown' | 'mouseup' | 'mousemove' | 'dragstart' | 'drag' | 'dragend' | 'dragenter' | 'dragleave' | 'drop' | 'contextmenu' | 'keydown' | 'keyup' | 'mousewheel' | 'beforechangesize' | 'afterchangesize' | 'beforeviewportchange' | 'afterviewportchange' | 'beforechange' | 'afterchange', 
             eventHandle: (ev: GraphEvent) => void
         ): void;
-        public find(id: string): any;
+        public find(id: string): Item | undefined;
 
         public add(type: 'node', model: GraphNode): void;
         public add(type: 'edge', model: GraphEdge): void;
@@ -52,8 +58,11 @@ declare namespace G6 {
     }
     interface GraphDataCommonType {
         id: string;
+        x?: number;
+        y?: number;
         /** 渲染层级 */
         index?: number;
+        size?: number | Array<number>;
         shape?: string;
         color?: string;
         parent?: string;
@@ -86,7 +95,7 @@ declare namespace G6 {
         /** 画布宽度，可选 */
         width?: number;
         /** 画布高度，可选 */
-        heith?: number;
+        height?: number;
         /** 初始化视口区域 */
         fitView?:  'tl' | 'lc' | 'bl' | 'cc' | 'tc' | 'tr' | 'rc' | 'br' | 'bc' | 'autoZoom';
         /** 视口适应画布边距 */
